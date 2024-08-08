@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입 폼</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+   
+        /* ---------------------------------------------------------------------------------------------*/
+        $("#registerForm").submit(function (e) {
+          
+          /* 제출 방지 */
+          e.preventDefault();
+          /* 제출 방지 */
+
+          /* 회원가입 버튼을 눌렀을때 입력된 데이터가 공백이거나 비어있을 경우 에러 문자 출력 */
+          let name = $("#fullname").val();
+          let pText1 = $("#pText1");
+          let email = $("#email").val();
+          let pText2 = $("#pText2");
+          let password = $("#password").val();
+          let pText3 = $("#pText3");
+          let passwordC = $("#password-confirm").val();
+          let pText4 = $("#pText4");
+          let pText5 = $("#pText5");
+
+          if (!name) {
+            pText1.text('이름 필드가 비어 있습니다');
+          }else {
+            pText1.empty();
+          }
+          if (!email) {
+            pText2.text('이메일을 입력해주세요');
+          }else {
+            pText2.empty();
+          }
+          if (!password) {
+            pText3.text('비밀번호를 입력해주세요');
+          }else {
+            pText3.empty();
+          }
+          if (!passwordC){
+            pText4.text('비밀번호 확인을 해주세요')
+          }else{
+            pText4.empty();
+          }
+          if(password !== passwordC){
+            pText5.text('비밀번호가 일치하지 않습니다')
+          }else{
+            pText5.empty();
+          }
+          /* 회원가입 버튼을 눌렀을때 입력된 데이터가 공백이거나 비어있을 경우 에러 문자 출력 */
+
+          /* 정확한 값이 입력되었다면 정보확인란에 입력받은 데이터를 보여주세요. */
+          let sex = "";
+          let pText6 = $("#pText6")
+          function check() {
+            let mC = $("#male").prop('checked');
+            let fC = $("#female").prop('checked');
+            let eC = $("#elseT").prop('checked');
+            if(mC){sex="남자"}else if(fC){sex="여자"}else if(eC){sex="기타"}
+          }
+          check();
+          
+          /** prop 기능을 활용하자. jquery에서는 jquery문법만 먹힘 */
+
+          if(name && email && password && passwordC && password===passwordC){
+            pText6.text(`이름 : ${name} 이메일 : ${email} 비밀번호 : ${password} 성별 : ${sex}`)
+          }
+          // 정확한 값이 입력되었다면 정보확인란에 입력받은 데이터를 보여주세요.
+
+          
+        });
+      });
+    </script>
+    <style></style>
+  </head>
+  <body>
+      <form id="registerForm">
+        <div class="signup-form">
+          <h2>회원가입</h2>
+    
+          <div>
+            <label for="text">사용자 이름</label> 
+            <input type="text" name="text" id="fullname" />
+            <p id="pText1"></p>
+
+            <label for="email">이메일</label>
+            <input type="email" name="email" id="email" />
+            <p id="pText2"></p>
+
+            <label for="password">비밀번호</label>
+            <input type="password" name="password" id="password" />
+            <p id="pText3"></p>
+
+            <laber for="password-confirm">비밀번호 확인</laber>
+            <input type="password" name="password-confirm" id="password-confirm" />
+            <p id="pText4"></p>
+            <p id="pText5"></p>
+          </div>
+    
+          <div>
+            <input type="radio" name="radio" id="male" value="male" checked />
+            <label for="male">남자</label>
+            <input type="radio" name="radio" id="female" value="female" />
+            <label for="female">여자</label>
+            <input type="radio" name="radio" id="elseT" value="else" />
+            <label for="elseT">기타</label>
+          </div>
+    
+          <div>
+            <input type="checkbox" name="check" id="check" value="" required/>
+            <label for="check">약관에 동의합니다</label>
+          </div>
+
+        <input type="submit" value="회원가입" />
+      </form>
+
+      <h3>회원가입 정보 확인</h3>
+      <p id="pText6"></p>
+      <div></div>
+    </div>
+  </body>
+</html>
