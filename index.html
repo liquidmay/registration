@@ -28,7 +28,7 @@
           }
         );
 
-        // if ($("#check:checked").length) {
+        // if ($("").length) {
         //   return;
         // } else {
         //   alert("체크해주세요");
@@ -97,14 +97,23 @@
           }
           check();
 
+          let cC = $("#check").prop("checked");
+
           /** prop 기능을 활용하자. jquery에서는 jquery문법만 먹힘 */
+
+          if (cC) {
+            return;
+          } else {
+            alert("체크박스를 클릭해주세요");
+          }
 
           if (
             name &&
             email &&
             password &&
             passwordC &&
-            password === passwordC
+            password === passwordC &&
+            cC
           ) {
             pText6.text(
               `이름 : ${name} 이메일 : ${email} 비밀번호 : ${password} 성별 : ${sex}`
@@ -157,7 +166,7 @@
         </div>
 
         <div>
-          <input type="checkbox" name="check" id="check" value="" required />
+          <input type="checkbox" name="check" id="check" value="" />
           <label for="check" id="checkY">약관에 동의합니다</label>
           <p id="info">
             자신의 서비스 법적 성격에 따라 다른 법률에서 별도 약관을 만들어
